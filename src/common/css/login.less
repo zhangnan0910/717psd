@@ -1,0 +1,52 @@
+.box{
+        flex: 1;
+        background: #eee;
+        padding-top:20/75rem;
+        text-align: center;
+        p{
+            display: flex;
+            height: 98/75rem;
+            background: #fff;
+            align-items: center;
+            span{
+                width: 130/75rem;
+                text-align: center;
+            }
+            input{
+                border: none;
+                outline: none;
+                border-bottom: 1px solid #ccc;
+                flex: 1;
+                padding-right: 15/75rem;
+                height: 100%;
+            }
+        }
+        div{
+            margin-top:130/75rem;
+            position: relative;
+            button{
+                width:70%;
+                height: 98/75rem;
+                color:#fff;
+                border-radius: 98/75rem;
+                background:red;
+                border: none;
+            }
+            span{
+                position: absolute;
+                background: rgba(0,0,0,.7);
+                color: #fff;
+                height: 70/75rem;
+                line-height: 70/75rem;
+                padding:0 100/75rem;
+                left: 50%;
+                transform: translateX(-50%);
+                top:-80/75rem;
+                border-radius: 70/75rem;
+                // display: none;
+            }
+            span.show{
+                display: block;
+            }
+        }
+    }

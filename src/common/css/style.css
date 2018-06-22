@@ -1,0 +1,146 @@
+@charset "UTF-8";
+* {
+  margin: 0px;
+  padding: 0px;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-size: 0.18666667rem;
+  font-weight: 400;
+  font-style: normal;
+  font-family: "微软雅黑";
+  text-size-adjust: 100%;
+}
+ul,
+li {
+  list-style: none;
+}
+/* %slh{
+     display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:1;
+    word-break:break-all;
+    text-overflow:ellipsis;
+    overflow:hidden;} */
+html {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+img,
+div,
+body,
+html,
+ul,
+li,
+a {
+  -webkit-touch-callout: none;
+}
+input,
+button {
+  outline: 0;
+}
+button {
+  cursor: pointer;
+}
+.clearfix:after {
+  content: '';
+  display: table;
+  height: 0;
+}
+i.iconfont {
+  font-size: 0.61333333rem;
+}
+.clearfixe {
+  clear: both;
+}
+html,
+body,
+#app,
+#app > div {
+  width: 100%;
+  height: 100%;
+}
+#app {
+  overflow: hidden;
+}
+#app > div {
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  height: 1.2rem;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0.13333333rem;
+}
+.header img {
+  width: 1.2rem;
+  height: 0.58666667rem;
+}
+.header div {
+  display: flex;
+  width: 2.8rem;
+  justify-content: space-between;
+}
+.header div a {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: red;
+}
+.header input {
+  flex: 1;
+  margin: 0 0.13333333rem;
+  height: 0.8rem;
+  border: none;
+  border-radius: 0.13333333rem;
+  background: #eeee;
+  text-indent: 1em;
+}
+.main {
+  flex: 1;
+  overflow: auto;
+}
+.box_item {
+  display: flex;
+  flex-wrap: wrap;
+  background: #ccc;
+  justify-content: space-between;
+}
+.box_item::after {
+  content: attr(data-attr);
+}
+.box_item li {
+  width: 49%;
+  background: #fff;
+  margin-top: 0.21333333rem;
+}
+.box_item dl {
+  width: 100%;
+}
+.box_item dl dt img {
+  width: 80%;
+}
+.footer {
+  height: 1.28rem;
+  border-top: 1px solid #ccc;
+  display: flex;
+}
+.footer li {
+  flex: 1;
+}
+.footer li.active a {
+  color: red;
+}
+.footer li a {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+.footer li a i.iconfont {
+  padding: 0.06666667rem;
+}
