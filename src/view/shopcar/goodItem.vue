@@ -18,21 +18,34 @@
 <script>
 import bus from '@/utits/bus'
 export default {
-    props:['item'],
+    
     data(){
         return{
             flag:false
+        }
+    },
+    props:['item'],
+    watch:{
+        flag(n,o){
+            bus.$emit('update',{
+                name:this.item.wname,
+                price: n?this.item.jdPrice*this.item.similarEnter:0,
+                off:n?n:false 
+            })
+        },
+        item(n,o){
+           
+            // bus.$emit('update',{
+            //     name:this.item.wname,
+            //     price: this.flag?this.item.jdPrice*this.item.similarEnter:0,
+            //     // off:n?n:false 
+            // })
         }
     },
     mounted(){
         bus.$on('check',(res)=>{
                 this.flag = res
             })
-    },
-    watch:{
-        flag(n){
-            console.log(n)
-        }
     },
     methods:{
         add(item){
@@ -50,14 +63,13 @@ export default {
             })
         },
         checked(item,e){
-
             this.flag = !this.flag
             //console.log(e.target.getAttribute("class"))
-            bus.$emit('update',{
-                name:item.wname,
-                price: this.flag?item.jdPrice*item.similarEnter:0,
-                // tag:this.flag?e.target:null
-            })
+            // bus.$emit('update',{
+            //     name:item.wname,
+            //     price: this.flag?item.jdPrice*item.similarEnter:0,
+            //     // tag:this.flag?e.target:null
+            // })
         }
         
     }

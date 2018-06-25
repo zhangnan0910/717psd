@@ -9,6 +9,27 @@
   text-align: center;
   padding-top: 0.26666667rem;
 }
+.box_item dl {
+  text-align: center;
+  padding: 0.2rem;
+}
+.box_item dl h1 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.box_item dl p {
+  display: flex;
+  justify-content: space-between;
+  height: 0.93333333rem;
+  align-items: center;
+}
+.box_item dl p i.confont {
+  padding: 0 0.13333333rem;
+}
 .icon_box li img {
   width: 1.17333333rem;
   height: 1.17333333rem;

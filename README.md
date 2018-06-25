@@ -36,7 +36,7 @@ this.$refs.name.$el
 
 ## 3. 需改善
 ```
-懒加载
+懒加载 : https://www.cnblogs.com/xyyt/p/7650539.html
 下拉刷新改变内容(多次请求数据) --> 无加载更多数据
 vuelidate表单验证
 分类请求数据

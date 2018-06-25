@@ -1,15 +1,15 @@
 <template>
-    <div class="main">
+    <div class="main1">
         <Header>
             <span @click='goto'>&lt;</span>
             <span>购物车</span>
-            <span>编辑</span>
+            <span @click="Edit">{{edit}}</span>
         </Header>
         <div class="box" v-show='shopcarList.length<1'>
             <img src="../../../static/img/cart/pic1.png" alt=""><br/>
             <button @click="addcart">去逛逛</button>
         </div>
-        <ul ref='ul'>
+        <ul ref='ul' class="main">
             
             <li v-for='item in shopcarList' >
                 <!-- <h1>店铺名称</h1> -->
@@ -24,7 +24,7 @@
             </span>
             <p>
                 合计 ：{{num}}
-            <button>结算</button></p>
+            <button>{{btn}}</button></p>
         </div>
     </div>
 </template>
@@ -39,10 +39,12 @@ export default {
         return{
            num:0,
            pricesSum:{},
-           flag:false
-           
+           flag:false,
+           edit:'编辑',
+           btn:'结算'
         }
     },
+    
     created(){
         this.$store.dispatch('feachCart')
     },
@@ -58,6 +60,7 @@ export default {
         }
         bus.$on('update',(res)=>{
             this.pricesSum[res.name] = res.price
+            // this.pricesSum.flag = res.off
             this.nums()
         })
 
@@ -78,9 +81,15 @@ export default {
                         return init+cur
                     },0)
         },
+        // 全选
         checked(e){
             this.flag = !this.flag
             bus.$emit('check',this.flag)
+        },
+        Edit(){
+            this.edit = '完成',
+            this.btn = '删除'
+            bus.$emit('delete')
         }
     },
     components:{

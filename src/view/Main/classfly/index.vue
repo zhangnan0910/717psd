@@ -1,5 +1,5 @@
 <template>
-    <div class="classfly">
+    <div class="main1">
         <Header>
             <i>&nbsp;&nbsp;</i>
             <Seartch/>
@@ -50,6 +50,7 @@ export default {
     },
     methods:{
         getData(cid,e){
+            
             if(this.$refs.ul.children){
                 let lis = this.$refs.ul.children
                 for(let i=0;i<lis.length;i++){
@@ -74,11 +75,11 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-.classfly {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
+// .classfly {
+//   display: flex;
+//   flex-direction: column;
+//   flex: 1;
+// }
 .main_box {
   display: flex;
   flex: 1;

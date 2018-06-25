@@ -1,5 +1,5 @@
 <template>
-    <div class="main">
+    <div class="main1">
          <Header >
             <img src="@/static/img/home/search/logo.png"/>
             <Seartch :data="listItem"/>
@@ -19,11 +19,11 @@
             <!-- 轮播图 -->
             <Swipers ref='swiper'/>
             <!-- 天猫首页分类 -->
-            <Home_iconClassfly :data="iconClassfly" ref='iconfly'/>
+            <Home_iconClassfly :data="Homeicon" ref='iconfly'/>
             <!-- 首页列表 -->
        
             <ul class="box_item" ref='list' data-attr="">
-                <li v-for="item in listItem" @click="gotoDetail(item)">
+                <li v-for="item in Homelist" @click="gotoDetail(item)">
                     <Home_listItem :item="item" />
                 </li>
             </ul>
@@ -52,8 +52,6 @@ export default {
         return {
             //url:'http://list.meilishuo.com/search?frame=1&page=1&cKey=wap-index&tag=&maxPrice=&minPrice=&fcid=&_mgjuuid=e61a3677-d308-472e-a1be-b5f71dee0444&sort=pop&_=1528851893936&callback=jsonp4',
             //jsonpName:'jsonp4',
-            iconClassfly:[],
-            footers:[],
             listItem:[],
             page:1,
             on_off:true,
@@ -61,35 +59,33 @@ export default {
         }
     },
     created(){
-       // this.$store.dispatch('getHome',this.page)
-     // 请求本地数据
-        fetch('/server/data.json').then(res=>res.json()).then(res=>{
-            this.iconClassfly = res.iconClassfly
-            this.footer = res.footer
-        })
+        this.$store.dispatch('getHomeicon')
+        this.$store.dispatch('getHomelist',this.page)
         
-        // 本地模拟跨域请求(初始数据请求)
-        fetch('http://localhost:3000/index/recommend.action?page='+this.page)
-            .then(res=>res.json())
-            .then(res=>{
-               this.listItem = JSON.parse(res.recommend).wareInfoList
-        })
         
         // 跨域请求数据
         // jsonp(this.url,this.jsonpName).then(res=>{
         //     console.log(res)
         // })
+
+        // 请求本地数据
+        // fetch('/server/data.json').then(res=>res.json()).then(res=>{
+        //     this.iconClassfly = res.iconClassfly
+        // })
+        
+        // 本地模拟跨域请求(初始数据请求)
+        // fetch('http://localhost:3000/index/recommend.action?page='+this.page)
+        //     .then(res=>res.json())
+        //     .then(res=>{
+        //        this.listItem = JSON.parse(res.recommend).wareInfoList
+        // })
     },
     computed:{
-        ...mapState(['homeData']),
-      
-        // getData:function(){
-        //     console.log(this.homeData.listItem)
-        // }
+        ...mapState(['Homeicon','Homelist']),
     },
-
+   
     methods:{
-        
+    
         gotoDetail(item){
             this.$router.push({
                 name:'detail',
@@ -100,7 +96,7 @@ export default {
         },
         // 滚动触发下拉刷新
         onScrollFn(e){
-            
+
             // 获取可视高度
             let boxH = this.$refs.box.offsetHeight;
             // 获取swiper高度
@@ -111,7 +107,7 @@ export default {
             let listsH = this.$refs.list.offsetHeight;
             // 获取滚动距离
             let scrollWt = this.$refs.box.scrollTop;
-         
+
            // 子元素总高度 - listsH + swiperH + iconflyH - boxH
            if(listsH + swiperH + iconflyH - boxH - scrollWt < 50 && this.on_off){
                if(this.page<=5){
@@ -122,19 +118,11 @@ export default {
                // 避免重复请求数据
                this.on_off = false
                this.$refs.list.setAttribute('data-attr','加载更多')
-                fetch('http://localhost:3000/index/recommend.action?page='+this.page)
-                    .then(res=>res.json())
-                    .then(res=>{
-                        if(res.code===1000){
-                            this.msg = '没有更多数据'
-                        }else{
-                            //对数据更新
-                            this.listItem = [
-                                ...this.listItem,
-                                ...JSON.parse(res.recommend).wareInfoList
-                            ]
-                        }
-                })
+               this.$store.dispatch('getUpdate',{
+                   page:this.page,
+                   flag:this.on_off
+               })
+                
                 this.on_off = true
            }
          

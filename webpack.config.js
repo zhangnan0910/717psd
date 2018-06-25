@@ -99,7 +99,16 @@ module.exports = {
   performance: {
     hints: false
   },
-  devtool: '#eval-source-map'
+  devtool: '#eval-source-map',
+  plugins:[
+    // node向js输出遍历的方式
+    new webpack.DefinePlugin({
+      'process.env':{
+        NODE_ENV:'"developmemt"'
+      },
+      'shop1601':JSON.stringify('1601')
+    })
+  ]
 }
 
 if (process.env.NODE_ENV === 'production') {

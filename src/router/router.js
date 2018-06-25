@@ -19,6 +19,14 @@ import Mine from '../view/Main/mine'
 import Classfly from "../view/Main/classfly";
 // 详情页
 import Detail from '../view/detail'
+// 我的订单
+import Mine_order from '../view/mine_order/index'
+// 我的订单
+import All from "../view/mine_order/all";
+import Daifukuan from '../view/mine_order/daifukuan'
+import Daifahuo from '../view/mine_order/daifuhuo'
+
+import Daishouhuo from '../view/mine_order/daishouhuo'
 Vue.use(VueRouter)
 
 import {getCookie} from '../utits/cookies'
@@ -74,7 +82,36 @@ const router = new VueRouter({
                 path:'/registered',
                 name:'registered',
                 component: Registered
+            },{
+                path:'/mine_order',
+                name:'mine_order',
+                component: Mine_order,
+                children:[
+                    {
+                        path:'all',
+                        name:'all',
+                        component:All
+                    },
+                    {
+                        path:'daifukuan',
+                        name:'daifukuan',
+                        component: Daifukuan
+                    }, {
+                        path: 'daifahuo',
+                        name: 'daifahuo',
+                        component: Daifahuo
+                    }, {
+                        path: 'daishouhuo',
+                        name: 'daishouhuo',
+                        component: Daishouhuo
+                    }, {
+                        path: 'all',
+                        name: 'all',
+                        component: All
+                    }
+                ]
             }
+            
             
         ]  
     })

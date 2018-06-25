@@ -2,14 +2,15 @@
     
     <dl>
         <dt>
-            <img :src="item.imageurl" alt="">
+            <img v-lazy="item.imageurl" alt="">
         </dt>
         <dd>
             <h1>{{item.wname}}</h1>
             <p>
                 <span>{{item.jdPrice}}</span>
-                <i class="iconfont" @click.stop="addcart(item)">购物车</i>
+                <i class="iconfont icon-shopcar" @click.stop="addcart(item)"></i>
             </p>
+            <DialogTips ref='Tips'></DialogTips>
         </dd>
     </dl> 
    
@@ -25,6 +26,15 @@ export default {
                 data:item
             }).then(res=>{
                 console.log(res)
+                if(res.code==1001){
+                    // console.log(this.$refs.Tips.active)
+                    this.$refs.Tips.active('请登录购物车')
+                    // this.$router.push({
+                    //     name:'login'
+                    // })
+                }else{
+                    this.$refs.Tips.active('添加成功')
+                }
             })
         }
     }

@@ -224,11 +224,7 @@ app.post('/api/minus', (req, res) => {
             cart[decoded.username].map(item => {
                 // 当数据存在时改变把flag改为false
                 if (item.wname === req.body.data) {
-                    if (req.body.count<1){
-                        res.json({
-                            msg:'错误'
-                        })
-                    }
+                    console.log(req.body.count)
                     item.similarEnter = req.body.count
                 }
             })

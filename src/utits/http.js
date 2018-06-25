@@ -1,15 +1,17 @@
 // import Vue from 'vue'
 // import axios from 'axios'
-// // console.log(process.env.NODE_ENV)//process是webpack注入到js里的变量
-
-// // const testUrl='http://localhost:3000'
-// // const onlineUrl='http:m.jd.com'
+// console.log(process.env.NODE_ENV)//process是webpack注入到js里的变量
+// 本地测试服务器
+// const testUrl='http://localhost:3000'
+// 线上服务器
+// const onlineUrl='http:m.jd.com'
 
 // let instance = axios.create({
 //     timeout: 3000,
 //     header: {
 //         // 'Accept-Content':"application/json"
 //     }
+       // 判断走线上服务还是测试服务
 //     // baseURL:process.env.NODE_ENV==='development'?testUrl:onlineUrl
 // })
 

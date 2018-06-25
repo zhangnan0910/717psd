@@ -1,11 +1,9 @@
 <template>
     <ul class="footer">
-        <li v-for="(item,index) in footerList" :key="index" @click="active(index,item)" :class="item.flag?'active':''">
-            <router-link :to="{name:item.name}">
-                <i :class="item.icon"></i>
-                <span>{{item.text}}</span>
-            </router-link>
-        </li>
+        <router-link tag='li' :to="{name:item.name}" v-for="(item,index) in footerList" :key="index" @click="active(index)" :class="flag?'active':''">
+            <i :class="item.icon"></i>
+            <span>{{item.text}}</span>
+        </router-link>
     </ul>
 </template>
 <script>
@@ -14,6 +12,7 @@ export default {
     data(){
         return {
             footerList:[],
+            flag:false
         }
     },
     mounted(){
@@ -22,14 +21,8 @@ export default {
         })
     },
     methods:{
-        active(index,item){
-            this.footerList.map((res,ind)=>{
-                if(index === ind){
-                    res.flag = true
-                }else{
-                    res.flag = false
-                } 
-            })
+        active(){
+            
         }
     }
 }
